@@ -16,7 +16,7 @@ const upload = multer({
 
 function getAPIResponse(res, url_path, req_type, callback_func, data=""){
   var request = http.request({
-    host: 'http://18.220.75.192',
+    host: 'localhost',
     port: 3000,
     path: url_path,
     method: req_type,

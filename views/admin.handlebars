@@ -1,0 +1,16 @@
+<div class="container p-5">
+    <h3>Admin Dashboard</h3>
+    <div class="row">
+    {{#each actions}}
+        <div class="card m-2 {{class}}" style="width: 18rem;">
+            <div class="card-body text-light">
+                <a class="text-white" href="{{url}}">
+                    <h5 class="card-title">{{operation}}</h5>
+                    <h6 class="card-subtitle mb-2">{{description}}</h6>
+                </a>
+            </div>
+        </div>
+    {{/each}}
+    </div>
+
+</div>

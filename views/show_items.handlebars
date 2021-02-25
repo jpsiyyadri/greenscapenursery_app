@@ -49,7 +49,7 @@
             $("input:checkbox[name=selected_item]:checked").each(function(){
                 items_list.push($(this).attr("val"))
             });
-            $("#delete_items").attr("href", `http://localhost:3000/api/delete?id=${items_list.join(",")}`)
+            $("#delete_items").attr("href", `http://18.220.75.192:3000/api/delete?id=${items_list.join(",")}`)
             // var item_obj = JSON.stringify({"items": items_list})
 
             // $.ajax({

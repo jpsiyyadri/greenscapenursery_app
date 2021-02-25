@@ -29,5 +29,12 @@ app.get("/", (req, res) => {
     res.status(404).render("error", {"error_id": "404", "message": `Requested ${req.url} Not Found Error`})
 })
 
+process.on('SIGINT', function() {
+    console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
+    // some other closing procedures go here
+    process.exit(1);
+});
+
 
 app.listen(5000)
+console.log("The app is live on 5000 port!!!")

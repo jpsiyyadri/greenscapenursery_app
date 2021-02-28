@@ -33,7 +33,7 @@ const SHOW_TABLE_COLS = [
     {"col_name": "plant_price", "title": "Price", "type": "text"},
     {"col_name": "plant_bag_size", "title": "Size", "type": "text"},
     {"col_name": "plant_category_type", "title": "Category", "type": "text"},
-    {"col_name": "plant_description_category", "title": "Desc. Category", "type": "text"},
+    {"col_name": "plant_description_category", "title": "Height", "type": "text"},
     {"col_name": "plant_description", "title": "Description", "type": "text"},
     {"col_name": "link_0", "title": "View 1", "type": "image"},
     {"col_name": "link_1", "title": "View 2", "type": "image"},

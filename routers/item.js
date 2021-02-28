@@ -147,7 +147,7 @@ function renderAddItem(res, data){
     "categories": data,
     "input_images_obj": IMAGE_FIELDS_ARRAY,
     "bag_size_array": BAG_SIZES_ARRAY,
-    "description_category_array": DESCRIPTION_CATEGORY_ARRAY
+    "heights_array": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
   })
 }
 

@@ -28,10 +28,10 @@
                 </div> -->
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationServer02">Description Category</label>
-                <select class="selectpicker form-control  show-tick show-menu-arrow" title="Choose description category" id="validationServer00" name="plant_description_category" data-size="5">
-                    {{#each description_category_array}}
-                        <option value="{{this.id}}">{{this.name}}</option>
+                <label for="validationServer02">Height</label>
+                <select class="selectpicker form-control  show-tick show-menu-arrow" title="Choose height" id="validationServer00" name="plant_description_category" data-size="5">
+                    {{#each heights_array}}
+                        <option value="{{this}}">{{this}}</option>
                     {{/each}}
                 </select>
             </div>

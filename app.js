@@ -9,11 +9,12 @@ const itemRoutes = require("./routers/item")
 
 const rootDir = require("./util/path")
 
-
-// middle wares
 app.engine("handlebars", express_handlebars())
 app.set("view engine", "handlebars")
+// app.enable('view cache')
+
 app.set("views", "views")
+
 
 app.use(body_parser.urlencoded({"extended": false}));
 app.use(body_parser.json());

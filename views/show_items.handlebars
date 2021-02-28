@@ -1,4 +1,4 @@
-<div class="container p-4">
+<div class="container py-2">
     <head><h3>Show Plants</h3></head>
     <main>
         <div class="d-flex justify-content-end p-2">
@@ -6,17 +6,13 @@
         </div>
         <div class="table-responsive">
             {{#if hasProducts}}
-            <table class="table table-hover">
+            <table class="table table-hover w-auto text-xsmall" id="itemsTable">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Plant</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">View 1</th>
-                        <th scope="col">View 2</th>
-                        <th scope="col">View 3</th>
+                        <th scope="col" data-orderable="false">#</th>
+                        {{#each table_structure}}
+                            <th scope="col">{{this.title}}</th>
+                        {{/each}}
                     </tr>
                 </thead>
                 
@@ -24,19 +20,25 @@
                     {{#each items}}
                     <tr>
                         <th scope="row"><input type="checkbox" name="selected_item" id="{{this.id}}" val="{{this.id}}"></th>
+                        <td>{{this.date}}</td>
                         <td><a href="/item/view?id={{this.id}}">{{this.plant_name}}</a></td>
                         <td>{{this.plant_price}}</td>
-                        <td>{{this.plant_category}}</td>
+                        <td>{{this.plant_bag_size}}</td>
+                        <td>{{this.plant_category_type}}</td>
+                        <td>{{this.plant_description_category}}</td>
                         <td>{{this.plant_description}}</td>
                         <td><img src="{{this.link_0}}" alt="plant" height="75px" width="75px"/></td>
                         <td><img src="{{this.link_1}}" alt="plant" height="75px" width="75px"/></td>
                         <td><img src="{{this.link_2}}" alt="plant" height="75px" width="75px"/></td>
+                        <td><img src="{{this.link_3}}" alt="plant" height="75px" width="75px"/></td>
+                        <td><img src="{{this.link_4}}" alt="plant" height="75px" width="75px"/></td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>        
             {{ else }}
-            no items found
+                <h5>No Items to show</h5>
+                Click here to <a href="/item/add">add items</a>
             {{/if}}
         </div>
     </main>
@@ -44,29 +46,20 @@
 </div>
 <script>
     $(document).ready(function(){
+        $('#itemsTable').DataTable({
+            columnDefs: [
+                { orderable: false, targets: 0 },
+                { 
+                    orderable: false, targets: 1
+                }
+            ]
+        });
         $("input[name=selected_item]").on("change", function(){
             var items_list = []
             $("input:checkbox[name=selected_item]:checked").each(function(){
                 items_list.push($(this).attr("val"))
             });
-            $("#delete_items").attr("href", `http://18.220.75.192:3000/api/delete?id=${items_list.join(",")}`)
-            // var item_obj = JSON.stringify({"items": items_list})
-
-            // $.ajax({
-            //    method: "POST",
-            //    url: "/item/delete",
-            //   dataType: 'json',
-            //    headers: {
-            //        'Content-Type': 'application/json'
-            //    },
-            //    data: item_obj,
-            //    success: function(response){
-            //        console.log(response)
-            //    },
-            //    error: function(response){
-            //        console.log(response)
-            //    }
-            // })        
+            $("#delete_items").attr("href", `/item/delete?id=${items_list.join(",")}`)
         })
     })
 </script>

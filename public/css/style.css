@@ -21,3 +21,7 @@
   font-size: 55px;
   color: black;
 }
+
+
+#itemsTable th { font-size: 12px; }
+#itemsTable td { font-size: 11px; }

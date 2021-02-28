@@ -5,43 +5,103 @@ const rootDir = require("../util/path")
 const url = require("url")
 const http = require("http");
 const multer = require("multer")
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-      fileSize: 5 * 1024 * 1024 // limits 5 MB
+const FormData = require("form-data")
+const moment = require("moment")
+const fs = require('fs')
+const { IMAGE_FIELDS_ARRAY, BAG_SIZES_ARRAY, DESCRIPTION_CATEGORY_ARRAY, SHOW_TABLE_COLS } = require("../util/config")
+var file_names = []
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(rootDir, `/uploads/test/`))
+  },
+  filename: function (req, file, cb) {
+    console.log(">> ", file.fieldname+"."+file.originalname.split(".").slice(-1)[0])
+    file_names.push(file.fieldname+"."+file.originalname.split(".").slice(-1)[0])
+    cb(null, file.fieldname+"."+file.originalname.split(".").slice(-1)[0])
   }
 })
-
+ 
+var upload = multer({ storage: storage })
 
 
 function getAPIResponse(res, url_path, req_type, callback_func, data=""){
-  var request = http.request({
-    host: 'localhost',
-    port: 3000,
-    path: url_path,
-    method: req_type,
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': data.length,
-      // headers such as "Cookie" can be extracted from req object and sent to /test
+  try{
+    var request = http.request({
+      host: 'localhost',
+      port: 3000,
+      path: url_path,
+      method: req_type,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': data.length
+      }
+    }, function(response) {
+      if(response.statusCode == 200){
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => {
+            data += chunk;
+        });
+        response.on('end', () => {
+          data = JSON.parse(data)
+          callback_func(res, data)
+        });
+      } else{
+        throwError(res, 500)
+      }
+    });
+    request.write(data);
+    request.on("error", (err) => {
+      throwError(res, 500)
+    })
+  } catch(err){
+    console.log(err)
+    res.send("error")
+  }
+}
+
+function pushItemToDataBase(req, resp, url_path, redirect_url){
+  try{
+    var count_of_images_to_upload = Object.keys(req.files).length
+    var form = new FormData();
+
+    form.append("plant_name", req.body.plant_name)
+    form.append("plant_description", req.body.plant_description)
+    form.append("plant_category_type", req.body.plant_category_type)
+    form.append("plant_price", req.body.plant_price)
+    form.append("plant_bag_size", req.body.plant_bag_size)
+    form.append("plant_description_category", req.body.plant_description_category)
+
+    for(var i=0;i<count_of_images_to_upload;i++){
+      console.log(path.join(rootDir, `/uploads/test/${file_names[i]}`))
+      const readStream = fs.createReadStream(path.join(rootDir, `/uploads/test/${file_names[i]}`))
+      form.append("plant_image", readStream)
     }
-  }, function(response) {
-    var data = '';
-    response.setEncoding('utf8');
-    response.on('data', (chunk) => {
-        data += chunk;
-    });
-    response.on('end', () => {
-    //   res.end('check result: ' + data);
-      data = JSON.parse(data)
-      callback_func(res, data)
-    });
-  });
-  request.write(data);
-  request.on("error", (err) => {
-    throwError(res, 500)
-  })
-  request.end();
+
+    const formReq = http.request(
+      {
+        host: 'localhost',
+        port: '3000',
+        path: url_path,
+        method: 'POST',
+        headers: form.getHeaders(),
+      },
+      response => {
+        console.log(response.statusCode); // 200
+        return resp.redirect("/item/show/")
+      }
+    );
+     
+    form.pipe(formReq);
+  } catch(err){
+    console.log("catch block")
+    resp.send("Error")
+  } finally{
+    console.log("finally block")
+    // formReq.close()
+  }
 }
 
 function throwError(res, error_id){
@@ -49,10 +109,15 @@ function throwError(res, error_id){
 }
 
 function renderShowItems(res, data){
-  return res.status(200).render("show_items", {
-      "items": data,
-      "hasProducts": true
-    })
+  // if(data.length){
+    return res.status(200).render("show_items", {
+        "items": data,
+        "hasProducts": (data.length)?true: false,
+        "table_structure": SHOW_TABLE_COLS
+      })
+  // } else{
+  //   return res.status(200).redirect("/admin/")
+  // }
 }
 
 function renderViewItem(res, data){
@@ -73,28 +138,45 @@ router.get("/show", (req, res) => {
     getAPIResponse(res, "/api/items", "GET", renderShowItems)
 })
 
-// function render_add_item_page(res, categories){
-//     res.sendFile(path.join(rootDir, "views", "admin", "add_item.html"), {"categories": categories})
-// }
+function renderPostDelete(res){
+  res.redirect("/item/show")
+}
 
 function renderAddItem(res, data){
-  return res.status(200).render("add_item", {"categories": data})
+  return res.status(200).render("add_item", {
+    "categories": data,
+    "input_images_obj": IMAGE_FIELDS_ARRAY,
+    "bag_size_array": BAG_SIZES_ARRAY,
+    "description_category_array": DESCRIPTION_CATEGORY_ARRAY
+  })
 }
 
 router.get('/add', (req, res, next) => {
   getAPIResponse(res, '/api/categories', "GET", renderAddItem)
 })
 
+router.get('/delete', (req, res, next) => {
+  getAPIResponse(res, `/api${req.url}`, "GET", renderPostDelete)
+})
 
 function redirectToHomePage(res, data){
   console.log("sucecefully redirected")
+  res.redirect("/admin/")
 }
 
-router.post('/add_new_item', upload.array("plant_image", 3), (req, res, next) => {
-  getAPIResponse(res, '/api/add_item', "POST", redirectToHomePage, JSON.stringify({
-    "files": JSON.stringify(req.files), "plant_description": req.body.plant_description, "plant_name": req.body.plant_name,
-    "plant_category": req.body.plant_category, "plant_price": req.body.plant_price
-  }))
+var cpUpload = upload.fields(IMAGE_FIELDS_ARRAY)
+
+router.post('/add_new_item', cpUpload, (req, res, next) => {
+  try{
+    if(req.files){
+      console.log(Object.keys(req.files).length)
+    }
+    // console.log(req.files[0])
+    pushItemToDataBase(req, res, '/api/add_new_item', redirectToHomePage)
+    // res.send("uploaded succesfully")
+  } catch{
+    res.send("error: ", err)
+  }
 })
 
 router.get('/', (req, res, next) => {

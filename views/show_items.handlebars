@@ -6,7 +6,7 @@
         </div>
         <div class="table-responsive">
             {{#if hasProducts}}
-            <table class="table table-hover w-auto text-xsmall" id="itemsTable">
+            <table class="table table-hover w-auto" id="itemsTable">
                 <thead>
                     <tr>
                         <th scope="col" data-orderable="false">#</th>
@@ -24,8 +24,8 @@
                         <td><a href="/item/view?id={{this.id}}">{{this.plant_name}}</a></td>
                         <td>{{this.plant_price}}</td>
                         <td>{{this.plant_bag_size}}</td>
+                        <td>{{this.plant_height}}</td>
                         <td>{{this.plant_category_type}}</td>
-                        <td>{{this.plant_description_category}}</td>
                         <td>{{this.plant_description}}</td>
                         <td><img src="{{this.link_0}}" alt="plant" height="75px" width="75px"/></td>
                         <td><img src="{{this.link_1}}" alt="plant" height="75px" width="75px"/></td>

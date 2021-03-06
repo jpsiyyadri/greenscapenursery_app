@@ -72,7 +72,7 @@ function pushItemToDataBase(req, resp, url_path, redirect_url){
     form.append("plant_category_type", req.body.plant_category_type)
     form.append("plant_price", req.body.plant_price)
     form.append("plant_bag_size", req.body.plant_bag_size)
-    form.append("plant_description_category", req.body.plant_description_category)
+    form.append("plant_height", req.body.plant_height)
 
     for(var i=0;i<count_of_images_to_upload;i++){
       console.log(path.join(rootDir, `/uploads/test/${file_names[i]}`))
@@ -90,6 +90,12 @@ function pushItemToDataBase(req, resp, url_path, redirect_url){
       },
       response => {
         console.log(response.statusCode); // 200
+        for(var i=0;i<count_of_images_to_upload;i++){
+          fs.unlinkSync(path.join(rootDir, `/uploads/test/${file_names[i]}`), {
+            force: true,
+          });  
+        }
+    
         return resp.redirect("/item/show/")
       }
     );

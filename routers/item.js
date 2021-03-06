@@ -91,11 +91,12 @@ function pushItemToDataBase(req, resp, url_path, redirect_url){
       response => {
         console.log(response.statusCode); // 200
         for(var i=0;i<count_of_images_to_upload;i++){
+          console.log(">> ", file_names[i])
           fs.unlinkSync(path.join(rootDir, `/uploads/test/${file_names[i]}`), {
             force: true,
           });  
         }
-    
+        file_names = []
         return resp.redirect("/item/show/")
       }
     );

@@ -10,6 +10,7 @@ lerna-debug.log*
 .DS_Store
 
 # directory dependencies
+uploads
 upload
 
 # Diagnostic reports (https://nodejs.org/api/report.html)

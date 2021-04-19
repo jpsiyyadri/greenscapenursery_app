@@ -2,55 +2,65 @@
     <h3>Add New Plant</h3>
 </header>
 <main class="px-5">
-    <form action="http://localhost:3000/api/add_new_item" method="post" id="add_plant_form" enctype="multipart/form-data">
+    <form action="/item/add_new_item" method="post" id="add_plant_form" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col-md-3 mb-3">
-            <label for="validationServer01">Plant name</label>
-            <input type="text" class="form-control" name="plant_name" id="validationServer01" value="Plant name" required>
-            <!-- <div class="valid-feedback">
-                Looks good!
-            </div> -->
+                <label for="validationServer01">Plant name</label>
+                <input type="text" class="form-control" name="plant_name" id="validationServer01" value="Plant name" required>
+                <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
             </div>
             <div class="col-md-3 mb-3">
-            <label for="validationServer00">Category</label>
-            <select class="selectpicker form-control" id="validationServer00" name="plant_category">
-                {{#each categories}}
-                    <option value="{{key}}">{{val}}</option>
-                {{/each}}
-            </select>
+                <label for="validationServer00">Category</label>
+                <select class="selectpicker form-control show-tick show-menu-arrow" id="validationServer00" title="Choose category" name="plant_category_type" data-size="5"  data-live-search="true">
+                    {{#each categories}}
+                        <option value="{{id}}">{{category_name}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="col-md-3 mb-3">
-            <label for="validationServer02">Description</label>
-            <input type="text" class="form-control" name="plant_description" id="validationServer02" value="Description" required>
-            <!-- <div class="valid-feedback">
-                Looks good!
-            </div> -->
+                <label for="validationServer02">Description</label>
+                <input type="text" class="form-control" name="plant_description" id="validationServer02" value="Description" required>
+                <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
             </div>
-            <div class="col-md-3">
-            <label for="validationServer03">Price</label>
-            <input type="number" class="form-control" value="1" name="plant_price" id="validationServer03" value="1" required>    
+            <div class="col-md-3 mb-3">
+                <label for="validationServer02">Height</label>
+                <select class="selectpicker form-control  show-tick show-menu-arrow" title="Choose height" id="validationServer00" name="plant_height" data-size="5">
+                    {{#each heights_array}}
+                        <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-4 mb-3">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" accept="image/*" name="plant_image" id="customFile_1">
-                    <label class="custom-file-label" for="customFile_1">Choose File</label>
-                </div>
+            <div class="col-md-3">
+                <label for="validationServer03">Price</label>
+                <input type="number" class="form-control" value="1" name="plant_price" id="validationServer03" value="1" required>    
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" accept="image/*" name="plant_image" id="customFile_2">
-                    <label class="custom-file-label" for="customFile_2">Choose file</label>
-                </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationServer02">Bag Weight</label>
+                <select class="selectpicker form-control  show-tick show-menu-arrow" id="validationServer00" title="Choose bag size" name="plant_bag_size" data-size="5" data-live-search="true">
+                    {{#each bag_size_array}}
+                        <option value="{{this.id}}">{{this.name}}<span class="text font-weight-light font-italic">[{{this.weight_from}} to {{this.weight_to}} {{this.unit}}]</span></option>
+                    {{/each}}
+                </select>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" accept="image/*" name="plant_image" id="customFile_3">
-                    <label class="custom-file-label" for="customFile_3">Choose file</label>
+        </div>
+        <div class="container m-0 p-0">
+            <div class="row mb-2">
+            {{#each input_images_obj}}
+                <div class="col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" accept="image/*" name="view_{{this.id}}" id="customFile_1">
+                        <label class="custom-file-label" for="customFile_1">Choose File</label>
+                    </div>
                 </div>
+            {{/each}}
             </div>
-        </div>                        
+        </div>
     </form>
     <button class="btn btn-primary submit_form">Add Plant</button>
     <button class="btn btn-danger reset_form">Reset Fields</button>

@@ -8,7 +8,7 @@ const multer = require("multer")
 const FormData = require("form-data")
 const moment = require("moment")
 const fs = require('fs')
-const { IMAGE_FIELDS_ARRAY, BAG_SIZES_ARRAY, DESCRIPTION_CATEGORY_ARRAY, SHOW_TABLE_COLS } = require("../util/config")
+const { IMAGE_FIELDS_ARRAY, SHOW_CATEGORY_TABLE_COLS } = require("../util/config")
 var file_names = []
 var HOST = 'localhost'
 // var HOST = 'http://65.1.118.86/'
@@ -45,7 +45,7 @@ function getAPIResponse(res, url_path, req_type, callback_func, data=""){
         response.on('data', (chunk) => {
             data += chunk;
         });
-        response.on('end', () => {
+        return response.on('end', () => {
           data = JSON.parse(data)
           callback_func(res, data)
         });
@@ -68,17 +68,12 @@ function pushItemToDataBase(req, resp, url_path, redirect_url){
     var count_of_images_to_upload = Object.keys(req.files).length
     var form = new FormData();
 
-    form.append("plant_name", req.body.plant_name)
-    form.append("plant_description", req.body.plant_description)
-    form.append("plant_category_type", req.body.plant_category_type)
-    form.append("plant_price", req.body.plant_price)
-    form.append("plant_bag_size", req.body.plant_bag_size)
-    form.append("plant_height", req.body.plant_height)
+    form.append("category_name", req.body.category_name)
 
     for(var i=0;i<count_of_images_to_upload;i++){
       console.log(path.join(rootDir, `/uploads/test/${file_names[i]}`))
       const readStream = fs.createReadStream(path.join(rootDir, `/uploads/test/${file_names[i]}`))
-      form.append("plant_image", readStream)
+      form.append("category_image", readStream)
     }
 
     const formReq = http.request(
@@ -92,13 +87,12 @@ function pushItemToDataBase(req, resp, url_path, redirect_url){
       response => {
         console.log(response.statusCode); // 200
         for(var i=0;i<count_of_images_to_upload;i++){
-          console.log(">> ", file_names[i])
           fs.unlinkSync(path.join(rootDir, `/uploads/test/${file_names[i]}`), {
             force: true,
           });  
         }
         file_names = []
-        return resp.redirect("/item/show/")
+        return resp.redirect("/category/show/")
       }
     );
      
@@ -116,17 +110,6 @@ function throwError(res, error_id){
   return res.status(error_id, "Internal Server Error")
 }
 
-function renderShowItems(res, data){
-  // if(data.length){
-    return res.status(200).render("show_items", {
-        "items": data,
-        "hasProducts": (data.length)?true: false,
-        "table_structure": SHOW_TABLE_COLS
-      })
-  // } else{
-  //   return res.status(200).redirect("/admin/")
-  // }
-}
 
 function renderViewItem(res, data){
   return res.status(200).render("view_item", {
@@ -140,31 +123,34 @@ router.get("/view", (req, res) => {
   getAPIResponse(res, `/api/items?id=${url_query_params.id}`, "GET", renderViewItem)
 })
 
+function renderShowCategories(res, data){
+  // if(data.length){
+    return res.status(200).render("show_categories", {
+        "items": data,
+        "table_structure": SHOW_CATEGORY_TABLE_COLS,
+        "hasProducts": (data.length)?true: false
+      })
+  // } else{
+  //   return res.status(200).redirect("/admin/")
+  // }
+}
 router.get("/show", (req, res) => {
     const url_query_params = url.parse(req.url, true).query
     const ref = url_query_params.ref || "items"
-    getAPIResponse(res, "/api/items", "GET", renderShowItems)
+    getAPIResponse(res, "/api/category/get", "GET", renderShowCategories)
 })
 
 function renderPostDelete(res){
-  res.redirect("/item/show")
-}
-
-function renderAddItem(res, data){
-  return res.status(200).render("add_item", {
-    "categories": data,
-    "input_images_obj": IMAGE_FIELDS_ARRAY,
-    "bag_size_array": BAG_SIZES_ARRAY,
-    "heights_array": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-  })
+  res.redirect("/category/show")
 }
 
 router.get('/add', (req, res, next) => {
-  getAPIResponse(res, '/api/category/get', "GET", renderAddItem)
+  return res.status(200).render("add_category")
 })
 
+
 router.get('/delete', (req, res, next) => {
-  getAPIResponse(res, `/api${req.url}`, "GET", renderPostDelete)
+  getAPIResponse(res, `/api/category/${req.url}`, "GET", renderPostDelete)
 })
 
 function redirectToHomePage(res, data){
@@ -174,13 +160,13 @@ function redirectToHomePage(res, data){
 
 var cpUpload = upload.fields(IMAGE_FIELDS_ARRAY)
 
-router.post('/add_new_item', cpUpload, (req, res, next) => {
+router.post('/add_new_category', cpUpload, (req, res, next) => {
   try{
     if(req.files){
       console.log(Object.keys(req.files).length)
     }
     // console.log(req.files[0])
-    pushItemToDataBase(req, res, '/api/add_new_item', redirectToHomePage)
+    pushItemToDataBase(req, res, '/api/category/add_new_category', redirectToHomePage)
     // res.send("uploaded succesfully")
   } catch{
     res.send("error: ", err)

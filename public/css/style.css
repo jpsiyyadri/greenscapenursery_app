@@ -1,3 +1,8 @@
+body{
+  background-color: rgb(233 232 232 / 45%);
+  overflow-x: hidden;
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   height: 100px;
@@ -20,4 +25,112 @@
   /* content: '<'; */
   font-size: 55px;
   color: black;
+}
+
+
+#itemsTable th { font-size: 12px; }
+#itemsTable td { font-size: 11px; }
+
+#items-section .item .card img {
+  /* width: 200px;  */
+  height: 250px;
+  object-fit: fit;
+}
+
+.navbar {
+  border-bottom: greenyellow;
+  /* opacity: 0.8; */
+}
+
+#home-section{
+  padding-top: 75px;
+}
+
+#home-section .carousel-item img{
+  height: 650px;
+  min-height: 650px;
+  max-height: 650px;
+}
+
+#home-section .carousel-item{
+  max-height: 650px;
+}
+
+.category-item .card{
+  width: 100%; 
+  height: 100%;
+}
+
+.category-item .card img{
+  height: 100%;
+  width: 100%;
+}
+
+.section{
+  background-color: white;
+}
+
+#main-carousel .item img{
+  height: 475px;
+}
+
+#aboutus-section img{
+  height: 250px;
+  width: 250px;
+}
+
+.owl-carousel .nav-btn{
+  height: 47px;
+  position: absolute;
+  width: 26px;
+  cursor: pointer;
+  top: 100px !important;
+}
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled{
+pointer-events: none;
+opacity: 0.2;
+}
+
+.owl-carousel .prev-slide{
+  background: url(nav-icon.png) no-repeat scroll 0 0;
+  left: -33px;
+}
+.owl-carousel .next-slide{
+  background: url(nav-icon.png) no-repeat scroll -24px 0px;
+  right: -33px;
+}
+.owl-carousel .prev-slide:hover{
+ background-position: 0px -53px;
+}
+.owl-carousel .next-slide:hover{
+background-position: -24px -53px;
+}
+
+.owl-items-navigation .owl-prev,  .owl-items-navigation .owl-next{
+  background-color: yellowgreen;
+  border-color: transparent;
+  margin: 0px 2px;
+  color: white;
+  font-size: 25px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 40px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  #main-carousel .item img{
+      height: 250px;
+  }
+  #aboutus-section .card {
+      border: 0px;
+  }
+}
+
+@media (min-width: 1200px){
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1410px;
+  }
 }

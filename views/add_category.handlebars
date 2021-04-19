@@ -1,0 +1,46 @@
+<header class="px-5 py-5 mt-5">
+    <h3>Add New Category</h3>
+</header>
+<main class="px-5">
+    <form action="/category/add_new_category" method="post" id="add_category_form" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationServer01">Category name</label>
+                <input type="text" class="form-control" name="category_name" id="validationServer01" value="" placeholder="type category name" required>
+                <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+            </div>
+        </div>
+        <div class="container m-0 p-0">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" accept="image/*" name="view_1" id="customFile_1">
+                        <label class="custom-file-label" for="customFile_1">Choose File</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-primary submit_form">Add Category</button>
+    <button class="btn btn-danger reset_form">Reset Fields</button>
+
+</main>
+<footer></footer>
+<script>
+    $(document).ready(function(){
+        $('select').selectpicker();
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+        $(".reset_form").on("click", function(){
+            $("#add_category_form").reset();
+        })
+        $(".submit_form").on("click", function(){
+            $("#add_category_form").submit();
+        })
+    })
+
+</script>

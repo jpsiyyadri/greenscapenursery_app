@@ -5,29 +5,35 @@ const body_parser = require("body-parser");
 const express_handlebars = require("express-handlebars")
 const adminRoutes = require("./routers/admin")
 const itemRoutes = require("./routers/item")
-
+const categoryRoutes = require("./routers/category")
+const appRoutes = require("./routers/application")
 
 const rootDir = require("./util/path")
 
-
-// middle wares
 app.engine("handlebars", express_handlebars())
 app.set("view engine", "handlebars")
+// app.enable('view cache')
+
+// Serve Static Assets
+
 app.set("views", "views")
+
 
 app.use(body_parser.urlencoded({"extended": false}));
 app.use(body_parser.json());
 app.use(body_parser.raw())
 
-app.use(express.static(path.join(__dirname, "public")))
+app.use("/static", express.static(path.join(__dirname, "public")))
 
 app.use("/admin", adminRoutes)
 app.use("/item", itemRoutes)
+app.use("/category", categoryRoutes)
+app.use("/", appRoutes)
 
 
-app.get("/", (req, res) => {
-    res.status(404).render("error", {"error_id": "404", "message": `Requested ${req.url} Not Found Error`})
-})
+// app.get("/", (req, res) => {
+//     res.status(404).render("error", {"error_id": "404", "message": `Requested ${req.url} Not Found Error`})
+// })
 
 process.on('SIGINT', function() {
     console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );

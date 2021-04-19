@@ -21,17 +21,8 @@
                     <tr>
                         <th scope="row"><input type="checkbox" name="selected_item" id="{{this.id}}" val="{{this.id}}"></th>
                         <td>{{this.date}}</td>
-                        <td><a href="/item/view?id={{this.id}}">{{this.plant_name}}</a></td>
-                        <td>{{this.plant_price}}</td>
-                        <td>{{this.plant_bag_size}}</td>
-                        <td>{{this.plant_height}}</td>
-                        <td>{{this.plant_category_type}}</td>
-                        <td>{{this.plant_description}}</td>
+                        <td>{{this.category_name}}</td>
                         <td><img src="{{this.link_0}}" alt="plant" height="75px" width="75px"/></td>
-                        <td><img src="{{this.link_1}}" alt="plant" height="75px" width="75px"/></td>
-                        <td><img src="{{this.link_2}}" alt="plant" height="75px" width="75px"/></td>
-                        <td><img src="{{this.link_3}}" alt="plant" height="75px" width="75px"/></td>
-                        <td><img src="{{this.link_4}}" alt="plant" height="75px" width="75px"/></td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -59,7 +50,7 @@
             $("input:checkbox[name=selected_item]:checked").each(function(){
                 items_list.push($(this).attr("val"))
             });
-            $("#delete_items").attr("href", `/item/delete?id=${items_list.join(",")}`)
+            $("#delete_items").attr("href", `/category/delete?id=${items_list.join(",")}`)
         })
     })
 </script>

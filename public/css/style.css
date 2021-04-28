@@ -124,6 +124,12 @@ background-position: -24px -53px;
 #services-section .banner{
   height: 250px;
 }
+#view-section {
+  height: 550px;
+}
+.owl-stage-outer{
+  height: 100%;
+}
 /* Top left text */
 .top-left {
   position: absolute;

@@ -63,6 +63,7 @@ router.get("/plant", (req, res) => {
         if(plant_id){
             const cur_item = _.filter(items_data, {"id": plant_id})
             if(cur_item.length){
+                console.log(cur_item)
                 return res.status(200).render(path.join(rootDir, "views", "plant_page"), {
                     "items": items_data, "cur_item": cur_item, "image_array": [0,1,2,3,4]
                 })

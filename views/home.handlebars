@@ -77,7 +77,7 @@
                         </a>
                     </div>
                     <div class="px-1 card-footer d-flex flex-column justify-content-start">
-                        <span class="">
+                        <span class="fs-20 text-capitalize">
                             {{this.plant_name}}
                         </span>
                         <span class="d-flex align-items-center">
@@ -152,7 +152,7 @@
             starSize: starSizeVal,
             initialRating: 4.5,
             readOnly: true,
-            strokeWidth: 2,
+            strokeWidth: starSizeVal,
             strokeColor: "#c45500",
             activeColor: "#f4d078",
             callback: function(currentRating, $el){
@@ -169,6 +169,7 @@
             nav: true,
             navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
             autoplay: true,
+            autoplayHoverPause:true,
             autoplayTimeout: 15000,
             smartSpeed: 500,
         })

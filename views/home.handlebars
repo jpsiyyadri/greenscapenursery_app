@@ -24,7 +24,7 @@
     <div id="categories-section" class="container">
       <div class="row py-2 flex-nowrap overflow-auto">
         {{#each categories}}
-        <div class="category-item col-2 col-md-3 col-lg-1">
+        <div class="category-item col-4 col-md-3 col-lg-1">
           <div class="card border-0 bg-transparent">
             <div class="card-body p-0 m-0">
               <a href="#">
@@ -39,6 +39,26 @@
         {{/each}}
       </div>
     </div>
+
+    <!-- services section starts here -->
+    <div id="services-section" class="row p-3">
+      <div class="banner col-12 col-lg-6">
+        <div class="h-100">
+          <img class="img-fluid img-thumbnail img-responsive h-100 w-100" src="https://cdn.downtoearth.org.in/library/large/2019-09-06/0.75193500_1567782903_0.jpg" alt="">
+        </div>
+        <div class="top-left text-light">
+          <span class="fs-25 font-weight-bold">Man power supply</span>
+        </div>
+      </div>
+      <div class="banner col-12 col-lg-6">
+        <img class="img-fluid img-thumbnail img-responsive h-100 w-100" src="http://img.fatlosspot.com/wp-content/uploads/2018/03/Gardening_header.jpg" alt="">
+        <div class="top-left text-light">
+          <span class="fs-25 font-weight-bold">Gardening Services</span>
+        </div>
+      </div>
+    </div>
+    <!-- services section ends here -->
+
 
     <!-- items section -->
     <div id="items-section" class="section container py-3">
@@ -56,7 +76,7 @@
                             <img class="img-fluid img-thumbnail img-responsive" src="{{this.link_0}}" alt="" srcset="">
                         </a>
                     </div>
-                    <div class="card-footer d-flex flex-column justify-content-start">
+                    <div class="px-1 card-footer d-flex flex-column justify-content-start">
                         <span class="">
                             {{this.plant_name}}
                         </span>
@@ -77,15 +97,11 @@
         <p class="lead">One day delivery</p>
       </div>
     </div>
-    <!-- services section -->
-    <div id="services-section" class="section container py-3">
-
-    </div>
 
     <!-- about us -->
-    <div id="aboutus-section" class="section container py-3">
-      <div class="fs-25 font-weight-bold">About us</div>
-      <div class="card-deck text-center">
+    <div id="aboutus-section" class="container py-3">
+      <div class="fs-35 font-weight-bold pl-2 text-center">About us</div>
+      <div class="card-deck text-center justify-content-center">
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-6">
@@ -93,9 +109,9 @@
             </div>
             <div class="col-md-6">
               <div class="card-body">
-                <h5 class="card-title">Mani</h5>
-                <p class="card-text">Owner</p>
-                <p class="card-text">9505636777</p>
+                <h5 class="card-title mb-0 fs-25">Mani</h5>
+                <p class="card-text mb-0 fs-20">Farming Expert, Owner</p>
+                <p class="card-text mb-0 font-weight-bold fs-25">9505636777</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
               </div>
             </div>
@@ -108,9 +124,9 @@
             </div>
             <div class="col-md-6">
               <div class="card-body">
-                <h5 class="card-title">Siva</h5>
-                <p class="card-text">Owner</p>
-                <p class="card-text">9866666250</p>
+                <h5 class="card-title mb-0 font-weight-bold fs-25">Siva</h5>
+                <p class="card-text mb-0 fs-2">Plant and Fertilizer Expert, Owner</p>
+                <p class="card-text mb-0 font-weight-bold fs-25">9866666250</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
               </div>
             </div>
@@ -128,9 +144,17 @@
 <script src="/static/js/jquery.star-rating-svg.min.js"></script>
 <script>
     $(document).ready(function(){
+        var starSizeVal = 25
+        if($(window).width() < 600){
+          starSizeVal = 15
+        }
         $(".item-rating").starRating({
-            starSize: 25,
+            starSize: starSizeVal,
             initialRating: 4.5,
+            readOnly: true,
+            strokeWidth: 2,
+            strokeColor: "#c45500",
+            activeColor: "#f4d078",
             callback: function(currentRating, $el){
                 // make a server call here
             }
@@ -146,7 +170,7 @@
             navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
             autoplay: true,
             autoplayTimeout: 15000,
-            smartSpeed: 15000,
+            smartSpeed: 500,
         })
 
         $('#items-carousel').owlCarousel({

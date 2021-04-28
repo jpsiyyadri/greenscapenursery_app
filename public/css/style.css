@@ -120,12 +120,31 @@ background-position: -24px -53px;
   font-weight: bold;
 }
 
+/* services css */
+#services-section .banner{
+  height: 250px;
+}
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
 @media only screen and (max-width: 600px) {
   #main-carousel .item img{
       height: 250px;
   }
   #aboutus-section .card {
       border: 0px;
+  }
+  #items-section .item .card img {
+    /* width: 200px;  */
+    height: 150px;
+    object-fit: fit;
+  }
+  #services-section .banner{
+    height: 150px;
   }
 }
 

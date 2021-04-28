@@ -19,3 +19,9 @@ body{
 .fs-35{
     font-size: 2.5em;
 }
+
+@media only screen and (max-width: 600px) {
+    body{
+        font-size: 12px;
+    }
+}

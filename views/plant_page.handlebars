@@ -1,8 +1,8 @@
 <div id="view-section" class="section mt-5 pt-5">
-    <div class="row h-100">
+    <div class="row">
         {{#each cur_item}}
-        <div class="col-10 col-md-3 col-lg-5 mx-5 h-100">
-            <div id="view-carousel" class="owl-carousel owl-theme h-100">
+        <div class="col-10 col-md-3 col-lg-5 mx-3">
+            <div id="view-carousel" class="owl-carousel owl-theme">
                 <div class="item h-100">
                   <div class="card p-0 m-0 bg-white h-100">
                     <div class="card-body p-0 m-0 h-100">
@@ -26,7 +26,7 @@
                 </div>
             </div>            
         </div>
-        <div class="col-10 col-md-3 col-lg-5 mx-4 h-100">
+        <div class="col-10 col-md-3 col-lg-5 mx-3 mt-md-5">
             <span class="fs-35 text-capitalize font-weight-bold">{{this.plant_name}}</span>
             <div class="fs-14 font-weight-bold text-wrap d-flex align-items-center"><div class="item-rating"></div>&nbsp (10 Reviewers)</div>
             <div><a href="#">143 Comments</a></div>
@@ -61,9 +61,9 @@
 </div>
 
 <!-- items section -->
-<div id="items-section" class="section container py-5">
+<div id="items-section" class="section container py-3">
     <div class="d-flex justify-content-between my-1">
-    <div class="fs-25 font-weight-bold">Recommendations</div>
+    <div class="fs-25 font-weight-bold">Shop Items</div>
     <div class="owl-items-navigation">
     </div>
     </div>
@@ -76,8 +76,8 @@
                         <img class="img-fluid img-thumbnail img-responsive" src="{{this.link_0}}" alt="" srcset="">
                     </a>
                 </div>
-                <div class="card-footer d-flex flex-column justify-content-start">
-                    <span class="">
+                <div class="px-1 card-footer d-flex flex-column justify-content-start">
+                    <span class="fs-20 text-capitalize">
                         {{this.plant_name}}
                     </span>
                     <span class="d-flex align-items-center">

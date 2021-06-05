@@ -8,11 +8,7 @@ const http = require("http");
 const moment = require("moment");
 const e = require("express");
 var HOST = 'localhost'
-// var HOST = 'http://65.1.118.86/'
-
-router.get("/home", (req, res) => {
-    return res.send("kanikaram ledu ra bhai")
-})
+// HOST = 'http://65.1.118.86/api'
 
 function getAPIResponse(res, url_path, req_type, data=""){
     try{

@@ -11,7 +11,7 @@ const fs = require('fs')
 const { IMAGE_FIELDS_ARRAY, SHOW_CATEGORY_TABLE_COLS } = require("../util/config")
 var file_names = []
 var HOST = 'localhost'
-// var HOST = 'http://65.1.118.86/'
+// HOST = 'http://65.1.118.86/'
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

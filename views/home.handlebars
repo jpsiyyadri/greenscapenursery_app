@@ -1,16 +1,25 @@
     <!-- home section -->
+
     <div id="home-section">
       <div id="main-carousel" class="owl-carousel owl-theme">
         <div class="item">
-            <img src="/static/img/sliders/slider_1.png" class="d-block w-100" alt="/static/img/pic_1.jpg">
+            <img src="/static/img/sliders/A.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
           {{!-- <img src="/static/img/pic_1.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg"> --}}
         </div>
         <div class="item">
-            <img src="/static/img/sliders/slider_2.png" class="d-block w-100" alt="/static/img/pic_1.jpg">
+            <img src="/static/img/sliders/B.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
           {{!-- <img src="/static/img/pic_2.jpg" class="d-block w-100" alt="/static/img/pic_2.jpg"> --}}
         </div>
         <div class="item">
-            <img src="/static/img/sliders/slider_3.png" class="d-block w-100" alt="/static/img/pic_1.jpg">
+            <img src="/static/img/sliders/C.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
+        </div>
+        <div class="item">
+            <img src="/static/img/sliders/D.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
+        </div>
+        <div class="item">
+            <img src="/static/img/sliders/E.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
           {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
         </div>
         {{!-- <div class="item">
@@ -18,8 +27,6 @@
         </div> --}}
       </div>
     </div>
-
-
     <!-- categories section -->
     <div id="categories-section" class="container">
       <div class="row py-2 flex-nowrap overflow-auto">
@@ -42,18 +49,24 @@
 
     <!-- services section starts here -->
     <div id="services-section" class="row p-3">
-      <div class="banner col-12 col-lg-6">
-        <div class="h-100">
-          <img class="img-fluid img-thumbnail img-responsive h-100 w-100" src="https://cdn.downtoearth.org.in/library/large/2019-09-06/0.75193500_1567782903_0.jpg" alt="">
+      <div id="services-carousel-1" class="banner col-12 col-lg-6 owl-carousel owl-theme">
+        <div class="item">
+            <img src="/static/img/sliders/D.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
         </div>
-        <div class="top-left text-light">
-          <span class="fs-25 font-weight-bold">Man power supply</span>
+        <div class="item">
+            <img src="/static/img/sliders/C.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
         </div>
       </div>
-      <div class="banner col-12 col-lg-6">
-        <img class="img-fluid img-thumbnail img-responsive h-100 w-100" src="http://img.fatlosspot.com/wp-content/uploads/2018/03/Gardening_header.jpg" alt="">
-        <div class="top-left text-light">
-          <span class="fs-25 font-weight-bold">Gardening Services</span>
+      <div id="services-carousel-2" class="banner col-12 col-lg-6 owl-carousel owl-theme">
+        <div class="item">
+            <img src="/static/img/sliders/D.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
+        </div>
+        <div class="item">
+            <img src="/static/img/sliders/C.jpg" class="d-block w-100" alt="/static/img/pic_1.jpg">
+          {{!-- <img src="/static/img/pic_3.jpg" class="d-block w-100" alt="/static/img/pic_3.jpg"> --}}
         </div>
       </div>
     </div>
@@ -61,7 +74,7 @@
 
 
     <!-- items section -->
-    <div id="items-section" class="section container py-3">
+    <div id="items-section" class="section container py-4 mt-5">
       <div class="d-flex justify-content-between my-1">
         <div class="fs-25 font-weight-bold">Shop Items</div>
         <div class="owl-items-navigation">
@@ -93,13 +106,13 @@
     <!-- add -->
     <div class="jumbotron jumbotron-fluid bg-light mb-0">
       <div class="container">
-        <h1 class="display-4">We Accept Bulk Orders</h1>
-        <p class="lead">One day delivery</p>
+        <h1 class="display-5">We Accept Bulk Orders</h1>
+        <p class="lead">24*7 Delivery</p>
       </div>
     </div>
 
     <!-- about us -->
-    <div id="aboutus-section" class="container py-3">
+    <div id="aboutus-section" class="section container py-3 mt-3">
       <div class="fs-35 font-weight-bold pl-2 text-center">About us</div>
       <div class="card-deck text-center justify-content-center">
         <div class="card mb-3" style="max-width: 540px;">
@@ -172,6 +185,33 @@
             autoplay: true,
             autoplayHoverPause:true,
             autoplayTimeout: 15000,
+            smartSpeed: 500,
+        })
+
+      
+      $('#services-carousel-1').owlCarousel({
+            loop:true,
+            animateOut: 'animate__lightSpeedOutLeft',
+            animateIn: 'animate__lightSpeedInRight',
+            items: 1,
+            nav: true,
+            navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
+            autoplay: true,
+            autoplayHoverPause:true,
+            autoplayTimeout: 2000,
+            smartSpeed: 500,
+        })
+
+        $('#services-carousel-2').owlCarousel({
+            loop:true,
+            animateOut: 'animate__lightSpeedOutLeft',
+            animateIn: 'animate__lightSpeedInRight',
+            items: 1,
+            nav: true,
+            navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
+            autoplay: true,
+            autoplayHoverPause:true,
+            autoplayTimeout: 2000,
             smartSpeed: 500,
         })
 

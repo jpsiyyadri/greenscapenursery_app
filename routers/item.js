@@ -142,7 +142,6 @@ router.get("/view", (req, res) => {
 
 router.get("/show", (req, res) => {
     const url_query_params = url.parse(req.url, true).query
-    const ref = url_query_params.ref || "items"
     getAPIResponse(res, "/api/items", "GET", renderShowItems)
 })
 

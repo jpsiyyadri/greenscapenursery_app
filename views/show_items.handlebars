@@ -1,12 +1,13 @@
-<div class="container py-2">
+<div class="container py-5">
     <head><h3>Show Plants</h3></head>
     <main>
         <div class="d-flex justify-content-end p-2">
-            <a class="btn btn-danger" href="#" id="delete_items">Delete</a>
+            <a class="btn btn-success mx-1" href="/item/add" id="">Add New Plants</a>
+            <a class="btn btn-danger mx-1" href="#" id="delete_items">Delete</a>
         </div>
         <div class="table-responsive">
             {{#if hasProducts}}
-            <table class="table table-hover w-auto" id="itemsTable">
+            <table class="table table-hover" id="itemsTable" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col" data-orderable="false">#</th>
@@ -48,12 +49,14 @@
     $(document).ready(function(){
         $('#itemsTable').DataTable({
             paging: false,
+            searching: false,
             columnDefs: [
                 { orderable: false, targets: 0 },
                 { 
                     orderable: false, targets: 1
                 }
-            ]
+            ],
+            scrollY: "450px"
         });
         $("input[name=selected_item]").on("change", function(){
             var items_list = []

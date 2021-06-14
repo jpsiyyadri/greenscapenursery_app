@@ -3,6 +3,7 @@ const app = express();
 const path = require("path")
 const body_parser = require("body-parser");
 const express_handlebars = require("express-handlebars")
+const userRoutes = require("./routers/user")
 const adminRoutes = require("./routers/admin")
 const itemRoutes = require("./routers/item")
 const categoryRoutes = require("./routers/category")
@@ -25,6 +26,7 @@ app.use(body_parser.raw())
 
 app.use("/static", express.static(path.join(__dirname, "public")))
 
+app.use("/user", userRoutes)
 app.use("/admin", adminRoutes)
 app.use("/item", itemRoutes)
 app.use("/category", categoryRoutes)

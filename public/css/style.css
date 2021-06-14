@@ -140,6 +140,9 @@ background-position: -24px -53px;
   #main-carousel .item img{
       height: 250px;
   }
+  #services-carousel-1 .item img, #services-carousel-2 .item img{
+    height: 125px;
+  }
   #aboutus-section .card {
       border: 0px;
   }

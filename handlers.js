@@ -40,7 +40,7 @@ module.exports = {
             let img_link_0 = this_obj["link_0"]
             let item_id = this_obj["id"]
             let item_name = this_obj["plant_name"]
-            out = out + '<div class="item col-2">'
+            out = out + '<div class="item col">'
                 out = out + '<div class="card p-0 m-0 bg-white">'
                     out = out + '<div class="card-body p-0 m-0" height="50px">'
                         out = out + '<a href="/plant?plant_id='+item_id+'">'

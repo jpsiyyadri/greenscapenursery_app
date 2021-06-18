@@ -116,6 +116,16 @@ function throwError(res, error_id){
   return res.status(error_id, "Internal Server Error")
 }
 
+function renderCategoryItems(res, data){
+  // if(data.length){
+    return res.status(200).render(path.join(rootDir, "views", "category_items"), {
+        "items": data,
+    })
+  // } else{
+  //   return res.status(200).redirect("/admin/")
+  // }
+}
+
 function renderShowItems(res, data){
   // if(data.length){
     return res.status(200).render("show_items", {
@@ -141,9 +151,10 @@ router.get("/view", (req, res) => {
 })
 
 router.get("/show", (req, res) => {
-    const url_query_params = url.parse(req.url, true).query
-    getAPIResponse(res, "/api/items", "GET", renderShowItems)
+  const url_query_params = url.parse(req.url, true).query
+  getAPIResponse(res, "/api/items", "GET", renderShowItems)
 })
+
 
 function renderPostDelete(res){
   res.redirect("/item/show")

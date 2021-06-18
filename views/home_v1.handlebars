@@ -34,7 +34,7 @@
         <div class="category-item col-4 col-md-3 col-lg-1">
           <div class="card border-0 bg-transparent">
             <div class="card-body p-0 m-0">
-              <a href="/category_items?category_id={{id}}&category_name={{category_name}}">
+              <a href="#">
                 <img src="{{link_0}}" alt="avenue" class="rounded-circle">
               </a>
             </div>
@@ -74,16 +74,32 @@
 
 
     <!-- items section -->
-    <div id="items-section" class="section container py-4 mt-3">
+    <div id="items-section" class="section container py-4 mt-5">
       <div class="d-flex justify-content-between my-1">
         <div class="fs-25 font-weight-bold">Shop Items</div>
         <div class="owl-items-navigation">
         </div>
       </div>
       <div id="items-carousel" class="owl-carousel owl-theme">
-        {{#item_card items}}
-          {{d}}
-        {{/item_card}}
+        {{#each items}}
+            <div class="item">
+                <div class="card p-0 m-0 bg-white">
+                    <div class="card-body p-0 m-0" height="50px">
+                        <a href="/plant?plant_id={{this.id}}">
+                            <img class="img-fluid img-thumbnail img-responsive" src="{{this.link_0}}" alt="" srcset="">
+                        </a>
+                    </div>
+                    <div class="px-1 card-footer d-flex flex-column justify-content-start">
+                        <span class="fs-20 text-capitalize">
+                            {{this.plant_name}}
+                        </span>
+                        <span class="d-flex align-items-center">
+                            <span class="item-rating text-sm"></span>(<span>100</span>)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
       </div>    
     </div>
 
@@ -148,6 +164,7 @@
         }
         $(".item-rating").starRating({
             starSize: starSizeVal,
+            initialRating: 4.5,
             readOnly: true,
             strokeWidth: starSizeVal,
             strokeColor: "#c45500",

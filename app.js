@@ -10,8 +10,17 @@ const categoryRoutes = require("./routers/category")
 const appRoutes = require("./routers/application")
 
 const rootDir = require("./util/path")
+exhbs = express_handlebars.create(
+    {
+        layoutsDir: path.join(__dirname, 'views/layouts'),
+        defaultLayout: 'main',
+        // custom helpers
+        helpers: require("./handlers")
 
-app.engine("handlebars", express_handlebars())
+    }
+)
+
+app.engine("handlebars", exhbs.engine)
 app.set("view engine", "handlebars")
 // app.enable('view cache')
 

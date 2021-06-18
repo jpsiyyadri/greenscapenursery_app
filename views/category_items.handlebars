@@ -1,0 +1,36 @@
+<!-- items section -->
+<div id="" class="section container py-4 mt-5 pt-5">
+    <h2>{{category_name}}...</h2>
+    <div id="" class="">
+        <div class="row" style="">            
+            {{#cat_item_card items}}
+                {{d}}
+            {{/cat_item_card}}
+        </div>
+    </div>    
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+<script src="/static/js/jquery.star-rating-svg.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var starSizeVal = 25
+        if($(window).width() < 600){
+          starSizeVal = 15
+        }
+        $(".item-rating").starRating({
+            starSize: starSizeVal,
+            readOnly: true,
+            strokeWidth: starSizeVal,
+            strokeColor: "#c45500",
+            activeColor: "#f4d078",
+            callback: function(currentRating, $el){
+                // make a server call here
+            }
+        });
+    })
+</script>

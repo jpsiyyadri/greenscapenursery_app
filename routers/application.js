@@ -6,7 +6,6 @@ const url = require("url")
 const _ = require("lodash")
 const http = require("http");
 const moment = require("moment");
-const e = require("express");
 var HOST = 'localhost'
 // HOST = 'http://65.1.118.86/api'
 
@@ -68,6 +67,28 @@ router.get("/plant", (req, res) => {
         return res.status(500).send("plant_id is missing")       
     })
 })
+
+router.get("/category_items", (req, res) => {
+  getAPIResponse(res, "/api/items", "GET").then((items_data) => {
+    // res.send(categories_data.concat(items_data))
+    const url_query_params = url.parse(req.url, true).query
+    const category_id = url_query_params["category_id"]
+    const category_name = url_query_params["category_name"]
+    console.log(category_id)
+    if(category_id.length){
+      console.log("cool", items_data)
+        const cate_items = _.filter(items_data, {"plant_category_type": category_id})
+        if(cate_items.length){
+            console.log(cate_items)
+            return res.status(200).render(path.join(rootDir, "views", "category_items"), {
+              "items": cate_items, "category_name": category_name
+          })
+        } 
+    }
+    return res.status(500).send(`<h1>`+category_name+` items are not available</h1><a href='/'>Go to Home</a>`)       
+  })
+})
+
 
 router.get("/", (req, res) => {
     getAPIResponse(res, '/api/category/get', "GET").then((categories_data) => {

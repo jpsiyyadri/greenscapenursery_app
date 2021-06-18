@@ -27,6 +27,9 @@ body{
   color: black;
 }
 
+.owl-nav{
+  display: none;
+}
 
 #itemsTable th { font-size: 12px; }
 #itemsTable td { font-size: 11px; }

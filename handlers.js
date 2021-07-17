@@ -69,7 +69,7 @@ module.exports = {
                         out = out + '<span class="d-flex align-items-center">'
                             out = out + '<span class="item-rating text-sm" data-rating="'+getRandomInt(3,5)+'"></span>(<span class="fs-10">'+getRandomInt(5, 20)+'</span>)'
                         out = out + '</span>'
-                        out = out + "<div class='row justify-content-center align-items-center'>"
+                        out = out + "<div class='d-none d-sm-none d-md-flex justify-content-center align-items-center'>"
                             out += '<button class="btn-add-to-cart m-1" data-item="'+item_id+'">Add to Cart</button>'
                             out += '<button class="btn-buy-now" data-item="'+item_id+'">Buy Now</button>'
                         out =  out+ '</div>'

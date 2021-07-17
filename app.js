@@ -36,7 +36,13 @@ app.set("views", "views")
 
 app.use(body_parser.urlencoded({"extended": false}));
 app.use(body_parser.json());
-app.use(body_parser.raw())
+app.use(body_parser.raw());
+// serves static files
+app.use("/static", express.static(path.join(__dirname, "public")))
+
+// serve nodu modules
+app.use("/node_modules/", express.static(path.join(__dirname, "node_modules")))
+
 app.use(cookieParser());
 app.use(csrfMiddleWare)
 
@@ -44,11 +50,6 @@ app.use(csrfMiddleWare)
 //     app.locals._token = req.csrfToken()
 //     next()
 // })
-// serves static files
-app.use("/static", express.static(path.join(__dirname, "public")))
-
-// serve nodu modules
-app.use("/node_modules/", express.static(path.join(__dirname, "node_modules")))
 
 // server will add a token to ensure security
 app.all("*", (req, res, next) => {

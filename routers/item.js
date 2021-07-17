@@ -118,7 +118,7 @@ function throwError(res, error_id){
 
 function renderCategoryItems(res, data){
   // if(data.length){
-    return res.status(200).render(path.join(rootDir, "views", "category_items"), {
+    return res.status(200).render(path.join(rootDir, "views", "all_items"), {
         "items": data,
     })
   // } else{
@@ -151,9 +151,9 @@ router.get("/view", (req, res) => {
 })
 
 router.get("/show", (req, res) => {
-  const url_query_params = url.parse(req.url, true).query
   getAPIResponse(res, "/api/items", "GET", renderShowItems)
 })
+
 
 
 function renderPostDelete(res){

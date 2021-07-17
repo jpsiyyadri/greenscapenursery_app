@@ -2,8 +2,8 @@ const IMAGE_FIELDS_ARRAY = [
     { name: 'view_1', maxCount: 1, id:1 },
     { name: 'view_2', maxCount: 1, id:2 },
     { name: 'view_3', maxCount: 1, id:3 },
-    { name: 'view_4', maxCount: 1, id:4 },
-    { name: 'view_5', maxCount: 1, id:5 }
+    // { name: 'view_4', maxCount: 1, id:4 },
+    // { name: 'view_5', maxCount: 1, id:5 }
 ]
 
 const BAG_SIZES_ARRAY = [
@@ -38,8 +38,8 @@ const SHOW_TABLE_COLS = [
     {"col_name": "link_0", "title": "View 1", "type": "image"},
     {"col_name": "link_1", "title": "View 2", "type": "image"},
     {"col_name": "link_2", "title": "View 3", "type": "image"},
-    {"col_name": "link_3", "title": "View 4", "type": "image"},
-    {"col_name": "link_4", "title": "View 5", "type": "image"}
+    // {"col_name": "link_3", "title": "View 4", "type": "image"},
+    // {"col_name": "link_4", "title": "View 5", "type": "image"}
 ]
 
 const SHOW_CATEGORY_TABLE_COLS = [

@@ -4,11 +4,32 @@ body{
 .fs-10{
     font-size: 0.714em;
 }
+.fs-11{
+    font-size: 0.785em;
+}
 .fs-12{
     font-size: 0.857em;
 }
+.fs-13{
+    font-size: 0.928em;
+}
 .fs-14{
     font-size: 1em;
+}
+.fs-15{
+    font-size: 1.07em;
+}
+.fs-16{
+    font-size: 1.14em;
+}
+.fs-17{
+    font-size: 1.21em;
+}
+.fs-18{
+    font-size: 1.28em;
+}
+.fs-19  {
+    font-size: 1.35em;
 }
 .fs-20{
     font-size: 1.4285em;
@@ -19,9 +40,12 @@ body{
 .fs-35{
     font-size: 2.5em;
 }
+.fs-40{
+    font-size: 3em;
+}
 
 @media only screen and (max-width: 600px) {
     body{
-        font-size: 12px;
+        font-size: 12px !important;
     }
 }

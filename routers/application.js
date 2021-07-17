@@ -58,7 +58,7 @@ router.get("/plant", (req, res) => {
         if(plant_id){
             const cur_item = _.filter(items_data, {"id": plant_id})
             if(cur_item.length){
-                console.log(cur_item)
+                items_data = items_data.slice(0, 15)
                 return res.status(200).render(path.join(rootDir, "views", "plant_page"), {
                     "items": items_data, "cur_item": cur_item, "image_array": [0,1,2,3,4]
                 })
@@ -72,30 +72,32 @@ router.get("/category_items", (req, res) => {
   getAPIResponse(res, "/api/items", "GET").then((items_data) => {
     // res.send(categories_data.concat(items_data))
     const url_query_params = url.parse(req.url, true).query
-    const category_id = url_query_params["category_id"]
+    const category_id = url_query_params["category_id"] || ""
     const category_name = url_query_params["category_name"]
-    console.log(category_id)
+    var cate_items = items_data;
     if(category_id.length){
-      console.log("cool", items_data)
-        const cate_items = _.filter(items_data, {"plant_category_type": category_id})
-        if(cate_items.length){
-            console.log(cate_items)
-            return res.status(200).render(path.join(rootDir, "views", "category_items"), {
-              "items": cate_items, "category_name": category_name
-          })
-        } 
+      cate_items = _.filter(items_data, {"plant_category_type": category_id})
     }
+    if(cate_items.length){
+        console.log(cate_items)
+        return res.status(200).render(path.join(rootDir, "views", "all_items"), {
+          "items": cate_items, "category_name": category_name
+      })
+    } 
+    
     return res.status(500).send(`<h1>`+category_name+` items are not available</h1><a href='/'>Go to Home</a>`)       
   })
 })
 
 
 router.get("/", (req, res) => {
+    var isVerifiedUser = req.cookies.auth_verified;
     getAPIResponse(res, '/api/category/get', "GET").then((categories_data) => {
         getAPIResponse(res, "/api/items", "GET").then((items_data) => {
             // res.send(categories_data.concat(items_data))
+            items_data = items_data.slice(0, 15)
             res.status(200).render(path.join(rootDir, "views", "home"), {
-                "categories": categories_data, "items": items_data
+                "categories": categories_data, "items": items_data, 'isVerifiedUser': isVerifiedUser
             })   
         })
     })

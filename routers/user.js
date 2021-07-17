@@ -8,5 +8,12 @@ router.get("/checkout", (req, res, next) => {
     res.status(200).render(path.join(rootDir, "views", "checkout"), {"data": data})
 })
 
+// payment
+
+// addresses
+
+// user info
+
+
 
 module.exports = router;

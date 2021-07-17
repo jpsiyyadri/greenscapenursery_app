@@ -46,6 +46,6 @@ body{
 
 @media only screen and (max-width: 600px) {
     body{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }

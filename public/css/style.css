@@ -1,6 +1,7 @@
 body{
   background-color: rgb(233 232 232 / 45%);
   overflow-x: hidden;
+  margin: 0;
 }
 
 .h-90{
@@ -10,10 +11,6 @@ body{
 img {
   max-width: 100%;
   display: block;
-}
-
-body{
-  overflow: auto;
 }
 
 header {
@@ -295,12 +292,6 @@ div#container div#content {
 
 div#container footer {
   flex-basis: 100px;
-}
-
-/* Appearance, not important */
-body {
-  margin: 0;
-  /* font-family: Fira Code; */
 }
 
 @keyframes changeHeight {

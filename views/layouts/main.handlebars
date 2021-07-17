@@ -68,13 +68,13 @@
                             <a href="/" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#items-section" class="nav-link">Explore</a>
+                            <a href="/category_items" class="nav-link">Explore</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#services-section" class="nav-link">Services</a>
+                            <a href="/services" class="nav-link">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#aboutus-section" class="nav-link">About</a>
+                            <a href="/about" class="nav-link">About</a>
                         </li>
                         {{#if (isTrue isVerifiedUser)}}
                         <li class="nav-item d-sm-block d-md-none">
@@ -112,9 +112,11 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        {{{body}}}
-    </div>
+    <main role="main">
+        <div class="container" id="container">
+            {{{body}}}
+        </div>
+    </main>
         <!-- footer -->
     <footer class="pt-4 mt-md-5 pt-md-5 bg-dark">
       <div class="row no-gutters">

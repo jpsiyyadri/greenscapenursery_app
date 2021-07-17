@@ -7,6 +7,22 @@ body{
   height: 90% !important;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body{
+  overflow: auto;
+}
+
+header {
+  overflow: auto;
+  height: 85px;
+  position: relative;
+  display: block;
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   height: 100px;
@@ -38,10 +54,6 @@ body{
 .navbar {
   border-bottom: greenyellow;
   /* opacity: 0.8; */
-}
-
-#home-section, #view-section{
-  padding-top: 75px;
 }
 
 
@@ -266,7 +278,58 @@ body{
   font-size: 35px !important\;
   font-weight: bold;
 } */
+
+/* footer css starts here */
+div#container {
+  /* The power of flexboxes! */
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  min-height: 72vh;
+}
+
+div#container div#content {
+  /* Key part: Eat the remaining space! */
+  flex-grow: 1;
+}
+
+div#container footer {
+  flex-basis: 100px;
+}
+
+/* Appearance, not important */
+body {
+  margin: 0;
+  /* font-family: Fira Code; */
+}
+
+@keyframes changeHeight {
+  0% {height: 30px}
+  10% {height: 30px}
+  50% {height: 400px}
+  60% {height: 400px}
+  100% {height: 30px}
+}
+
+div, footer {
+  text-align: center;
+}
+
+div#content section {
+  animation: changeHeight 10s infinite linear;
+}
+
+
+/* footer css ends here */
+
+
 @media only screen and (max-width: 600px) {
+  div#container{
+    min-height: 82vh;
+  }
+  header{
+    height: 60px !important;
+  }
   .site-logo{
     height: 20px !important;
     width: 20px !important;
@@ -294,8 +357,8 @@ body{
     margin: 10px 10px;
   }
   .item-card .jq-star {
-    height: 10px !important;
-    width: 10px !important;
+    height: 15px !important;
+    width: 12px !important;
   }
   .item-card{
     width: 6rem !important;

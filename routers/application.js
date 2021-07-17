@@ -82,13 +82,22 @@ router.get("/category_items", (req, res) => {
         console.log(cate_items)
         return res.status(200).render(path.join(rootDir, "views", "all_items"), {
           "items": cate_items, "category_name": category_name
-      })
+        })
     } 
     
-    return res.status(500).send(`<h1>`+category_name+` items are not available</h1><a href='/'>Go to Home</a>`)       
+    return res.status(500).send(`<h1>`+category_name+` items are not available</h1><a href='/'>Go to Home</a>`)
   })
 })
 
+router.get("/about", (req, res, next) =>{
+  // return res.status(500).send(`<h1>About us</h1>`)
+  return res.status(200).render(path.join(rootDir, "views", "about"))
+})
+
+router.get("/services", (req, res, next) =>{
+  // return res.status(500).send(`<h1>Services</h1>`)
+  return res.status(200).render(path.join(rootDir, "views", "services"))
+})
 
 router.get("/", (req, res) => {
     var isVerifiedUser = req.cookies.auth_verified;

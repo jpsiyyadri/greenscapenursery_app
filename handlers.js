@@ -61,7 +61,7 @@ module.exports = {
                         out = out + '</a>'
                     out = out + '</div>'
                     out = out + '<div class="px-1 card-footer d-flex flex-column justify-content-start">'
-                        out = out + '<span class="fs-12 d-flex flex-column py-1 text-wrap">'
+                        out = out + '<span class="fs-14 d-flex flex-column py-1 text-wrap">'
                             item_name = item_name.toLowerCase()
                             item_name = item_name.slice(0,1).toUpperCase() + item_name.slice(1)
                             out = out + process_names(item_name)
@@ -86,23 +86,24 @@ module.exports = {
             let img_link_0 = this_obj["link_0"]
             let item_id = this_obj["id"]
             let item_name = this_obj["plant_name"]
-            out += '<a href="/plant?plant_id='+item_id+'">'
             out += '<div class="mob-item-card card mb-3">'
                 out += '<div class="row no-gutters col-12 px-0 h-100">'
                     out += '<div class="col-3 h-100">'
-                        out += '<img src="'+img_link_0+'" class="card-img h-100 w-100 img-responsive" alt="/static/img/man.jpg">'
+                        out += '<img src="'+img_link_0+'" class="card-img h-100 w-100 img-responsive" alt="plant item">'
                     out += '</div>'
                     out += '<div class="col-9">'
-                        out += '<div class="card-body">'
-                            out += '<span class="fs-15 d-flex flex-column py-1 text-wrap">'
-                                item_name = item_name.toLowerCase()
-                                item_name = item_name.slice(0,1).toUpperCase() + item_name.slice(1)
-                                out = out + process_names(item_name, 30)
-                            out += '</span>'
+                        out += '<div class="card-body mt-0 pt-1">'
+                            out += '<a href="/plant?plant_id='+item_id+'">'
+                                out += '<span class="fs-15 d-flex flex-column py-1 text-wrap">'
+                                    item_name = item_name.toLowerCase()
+                                    item_name = item_name.slice(0,1).toUpperCase() + item_name.slice(1)
+                                    out = out + process_names(item_name, 30)
+                                out += '</span>'
+                            out += '</a>'
                             out = out + '<span class="d-flex align-items-center">'
                                 out = out + '<span class="item-rating text-sm" data-rating="'+getRandomInt(3,5)+'"></span>(<span class="fs-10">'+getRandomInt(5, 20)+'</span>)'
                             out = out + '</span>'
-                            out = out + "<div class='d-flex fs-11'>"
+                            out = out + "<div class='d-flex fs-11 mt-3'>"
                                 out += '<button class="btn-add-to-cart" data-item="'+item_id+'">Add to Cart</button>'
                                 out += '<button class="btn-buy-now" data-item="'+item_id+'">Buy Now</button>'
                             out =  out+ '</div>'
@@ -111,7 +112,6 @@ module.exports = {
                     out += '</div>'
                 out += '</div>'
             out += '</div>'
-            out += '</a>'
         }
         return out
     }

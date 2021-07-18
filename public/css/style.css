@@ -315,6 +315,9 @@ div#content section {
 .btn-buy-now, .btn-add-to-cart, .sign-in, .sign-out, .cart-btn {
   display: none !important;
 }
+.site-links a, .site-links a:hover, .site-links a:active{
+  color: white;
+}
 
 @media only screen and (max-width: 600px) {
   div#container{

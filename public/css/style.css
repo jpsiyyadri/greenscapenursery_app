@@ -312,7 +312,9 @@ div#content section {
 
 
 /* footer css ends here */
-
+.btn-buy-now, .btn-add-to-cart, .sign-in, .sign-out, .cart-btn {
+  display: none !important;
+}
 
 @media only screen and (max-width: 600px) {
   div#container{

@@ -107,7 +107,7 @@ app.all("*", verifyCookie)
 app.use("/cart", cartRoutes)
 app.use("/user", userRoutes)
 // app.use("/admin", adminRoutes)
-app.use("/item", itemRoutes)
+// app.use("/item", itemRoutes)
 app.use("/category", categoryRoutes)
 app.use("/", appRoutes)
 

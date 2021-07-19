@@ -108,34 +108,50 @@
         </div>
     </div>
 
-    <!-- about us -->
-    <div id="aboutus-section" class="section py-3 mt-3">
-      <div class="fs-35 font-weight-bold pl-2 text-center">About us</div>
-          <div id="carouselAboutUs" class="carousel slide h-75" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row justify-content-center">
-                  <img class="d-block" src="https://firebasestorage.googleapis.com/v0/b/test-api-55d38.appspot.com/o/mani_pic.jpeg?alt=media" alt="First slide">
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row justify-content-center">
-                  <img class="d-block" src="https://firebasestorage.googleapis.com/v0/b/test-api-55d38.appspot.com/o/mani_pic.jpeg?alt=media" alt="First slide">
-                </div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselAboutUs" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselAboutUs" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+<!-- about us -->
+<div id="aboutus-section" class="section py-3 mt-3">
+    {{!-- <div class="fs-35 font-weight-bold pl-2 text-center">About us</div> --}}
+    <div class="text-center d-flex flex-column">
+        <span class="fs-14">We are at the heart of Godavari</span>
+        <span class="fs-14 font-weight-bold">Kadiyam</span>
+        <span class="fs-14">East Godavari</span>
+        <span class="fs-14">Andhra Pradesh</span>
+        <span class="fs-14">India</span>
     </div>
-
-
+    <!--The div element for the map -->
+    <div id="map" class="m-2"></div>
+    <div class="d-flex align-items-center justify-content-center bg-dark text-light">
+        <span class="fs-16 font-weight-bold">Our Team</span>
+    </div>
+    <div id="carouselAboutUs" class="carousel slide h-75" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <div class="row justify-content-center">
+                <img class="d-block" src="https://firebasestorage.googleapis.com/v0/b/test-api-55d38.appspot.com/o/mani_pic.jpeg?alt=media" alt="First slide">
+            </div>
+            </div>
+            <div class="carousel-item">
+            <div class="row justify-content-center">
+                <img class="d-block" src="https://firebasestorage.googleapis.com/v0/b/test-api-55d38.appspot.com/o/mani_pic.jpeg?alt=media" alt="First slide">
+            </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselAboutUs" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselAboutUs" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+<script src="/static/js/my_map.js"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFnOPypkrEtw2yw4gs1LJFzGV3ozl6X9c&callback=initMap&libraries=&v=weekly"
+  async
+></script>
 <script src="/static/js/jquery.star-rating-svg.min.js" defer></script>
 <script src="/static/js/items_script.js" defer></script>
 <script src="/static/js/common.js" defer></script>

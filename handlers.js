@@ -16,6 +16,113 @@ function process_names(str, char_limit=20){
 }
 
 module.exports = {
+    'plant': function(plant_data, options){
+        var out = ''
+        for(var i =0; i< 1; i++){
+            var this_= plant_data[i]
+            out += '<div class="col-1 col-md-1 col-lg-1 flex-col flex-wrap ml-3 d-none d-sm-none d-md-block">'
+                for(var j=0; j<3; j++){
+                    if(j==0){
+                        out += '<div class="carousel-ctrl-item active mb-1 p-1" data-target="#plantPageCarousel" data-slide-to="'+j+'">'
+                            out += '<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                        out += '</div>'
+                    }
+                    else{
+                        out += '<div class="carousel-ctrl-item mb-1 p-1" data-target="#plantPageCarousel" data-slide-to="'+j+'">'
+                            out += '<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                        out += '</div>'
+                    }
+                }
+            out += '</div>'
+            
+            out += '<div class="col-10 col-md-3 col-lg-5 ml-1 mr-3 h-100" >'
+                out += '<div id="plantPageCarousel" class="carousel slide carousel-fade h-90" data-ride="carousel">'
+                    out += '<ol class="carousel-indicators">'
+                        for(var j=0; j<3; j++){
+                            if(j==0){
+                                out += '<li data-target="#plantPageCarousel" data-slide-to="0" class="active"></li>'
+                            }
+                            else{
+                                out += '<li data-target="#plantPageCarousel" data-slide-to="'+j+'" class=""></li>'
+                            }
+                        }
+                    out += '</ol>'
+                    out += '<div class="carousel-inner">'
+                        for(var j=0; j<3; j++){
+                            if(j==0){
+                                out += '<div class="carousel-item active">'
+                                    out +='<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                                out += '</div>'
+                            }
+                            else{
+                                out += '<div class="carousel-item">'
+                                    out +='<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                                out += '</div>'
+                            }
+                        }
+                    out += '</div>'
+                    out += '\
+                        <a class="carousel-control-prev" href="#plantPageCarousel" role="button" data-slide="prev">\
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\
+                            <span class="sr-only">Previous</span>\
+                        </a>\
+                        <a class="carousel-control-next" href="#plantPageCarousel" role="button" data-slide="next">\
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>\
+                            <span class="sr-only">Next</span>\
+                        </a> '
+                out += '</div>'
+            out += '</div>'
+            out += '<div class="col row mx-3 row d-sm-block d-md-none justify-content-center">'
+                for(var j=0; j<3; j++){
+                    if(j==0){
+                        out += '<div class="carousel-ctrl-item active mb-1 p-1" data-target="#plantPageCarousel" data-slide-to="'+j+'">'
+                            out += '<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                        out += '</div>'
+                    }
+                    else{
+                        out += '<div class="carousel-ctrl-item mb-1 p-1" data-target="#plantPageCarousel" data-slide-to="'+j+'">'
+                            out += '<img class="d-block w-100 h-100" src="'+this_['link_'+j]+'" alt="First slide">'
+                        out += '</div>'
+                    }
+                }
+            out += '</div>'
+            out += '<div class="col-10 col-md-3 col-lg-5 mx-3">'
+                out += '<span class="fs-35 text-capitalize font-weight-bold plant-name">' + this_['plant_name'] + '</span>'
+                out += '<div class="fs-14 font-weight-bold text-wrap d-flex align-items-center">'
+                    out += '<span class="item-rating text-sm" data-rating="'+getRandomInt(3,5)+'"></span>(<span class="fs-10">'+getRandomInt(5, 20)+'</span>)'
+                out += '</div>'
+                out += '<div><a href="#">'+getRandomInt(0,5)+' Comments</a></div>'
+                out += '<button class="bg-warning text-light border-0 fs-12 font-weight-bold text-capitalize">Call us for Pricing:\
+                    <span class="fs-20"><i class="bi bi-headset"></i>98666 66250</span>\
+                </button>\
+                <div class="font-italic text-success fs-10">* Promotion offer applied use coupoun: New20 at the checkout</div>\
+                <div class="d-flex m-0 p-0">\
+                    <button class="btn-add-to-cart mr-1">Add to Cart</button>\
+                    <button class="btn-buy-now" id="action-checkout">Buy Now</button>\
+                </div>\
+                <div class="border-bottom mt-1 mb-2"></div>\
+                <div class="plant_description">\
+                    <span class="fs-20">Description</span>\
+                    <ul class="p-0 pl-3">\
+                        <li class="fs-14"><span class="font-weight-bold">Type:</span><span>Plant type</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Bag size:</span><span>5X5</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Height:</span><span>depends upon bag size</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Weight:</span><span>Approx 2.5 to 3kg</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Purpose:</span><span>Decorative/Oxygen/Display</span></li>\
+                    </ul>\
+                </div>\
+                <div class="plant_maintenance">\
+                    <span class="fs-20">Maintenance</span>\
+                    <ul class="p-0 pl-3">\
+                        <li class="fs-14"><span class="font-weight-bold">Soil type:</span> <span>Sand, Clay, Potting Soil, Mixture can be used</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Water type:</span> <span>Regular water, Fertilized water can be used</span></li>\
+                        <li class="fs-14"><span class="font-weight-bold">Temperature:</span> <span>Sunlight or rain</span></li>\
+                    </ul>\
+                </div>\
+            </div>'
+        }
+        return out
+    },
     'isTrue': function (value) {
         return value == 'true';
     },

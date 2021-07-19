@@ -1,6 +1,20 @@
 $(document).ready(function(){
     var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var starSizeVal = 25
+    if($(window).width() < 600){
+      starSizeVal = 15;
+    }
 
+    $(".item-rating").starRating({
+        starSize: starSizeVal,
+        readOnly: true,
+        strokeWidth: starSizeVal,
+        strokeColor: "#c45500",
+        activeColor: "#f4d078",
+        callback: function(currentRating, $el){
+            // make a server call here
+        }
+    });
     // add to cart click action
     $(".btn-add-to-cart").on("click", function(){
         var item_id = $(this).data("item");
@@ -30,6 +44,7 @@ $(document).ready(function(){
         // send a post request
 
     })
+
 
     // checkoout action
 

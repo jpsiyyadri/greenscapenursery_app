@@ -1,20 +1,8 @@
 $(document).ready(function(){
-    var starSizeVal = 25
     var scrollPos = 800;
     if($(window).width() < 600){
-      starSizeVal = 15;
       scrollPos = 300;
     }
-    $(".item-rating").starRating({
-        starSize: starSizeVal,
-        readOnly: true,
-        strokeWidth: starSizeVal,
-        strokeColor: "#c45500",
-        activeColor: "#f4d078",
-        callback: function(currentRating, $el){
-            // make a server call here
-        }
-    });
 
     $(".scroll-item-right").on("click", function(){
       var leftPos = $("#shop-items").scrollLeft();

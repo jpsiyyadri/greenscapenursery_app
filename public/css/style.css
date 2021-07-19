@@ -326,7 +326,18 @@ div#content section {
   /* The width is the width of the web page */
 }
 
+.kadiyam-link, .kadiyam-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.text-cursive{
+  font-family: cursive;
+}
+
 @media only screen and (max-width: 600px) {
+  h1{
+    font-size: 2rem;
+  }
   #map {
     height: 400px;
     /* The height is 400 pixels */
